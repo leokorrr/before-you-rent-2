@@ -163,7 +163,6 @@ async function findNearbyPlaces({ lat, lng, selectedFilters, radiusKm }) {
         results[placeType] = []
       }
 
-      console.log(`Found ${data.places?.length || 0} ${placeType}(s)`)
     } catch (error) {
       console.error(`Error fetching ${placeType}:`, error)
       results[placeType] = []

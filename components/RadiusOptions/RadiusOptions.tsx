@@ -17,7 +17,7 @@ export const RadiusOptions: React.FC<TRadiusOptionsProps> = ({
 }) => {
   return (
     <RadioGroup value={value} onChange={onChange} className={className}>
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         {OPTIONS.map(({ key, label }) => (
           <Radio
             key={key}

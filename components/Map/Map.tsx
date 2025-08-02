@@ -42,23 +42,19 @@ export const Map = ({ center, places, apiKey }: PlacesMapProps) => {
 
   // First useEffect: Load the Google Maps script
   useEffect(() => {
-    console.log('Loading Google Maps script...')
 
     const loadGoogleMaps = () => {
       if ((window as any).google?.maps) {
-        console.log('Google Maps already available')
         setIsScriptLoaded(true)
         return
       }
 
       const existingScript = document.querySelector('script[src*="maps.googleapis.com"]')
       if (existingScript) {
-        console.log('Script already exists, waiting...')
         setLoadingStatus('Waiting for Google Maps...')
 
         const checkLoaded = setInterval(() => {
           if ((window as any).google?.maps) {
-            console.log('Google Maps loaded via existing script')
             clearInterval(checkLoaded)
             setIsScriptLoaded(true)
           }
@@ -75,7 +71,6 @@ export const Map = ({ center, places, apiKey }: PlacesMapProps) => {
         return
       }
 
-      console.log('Creating new script...')
       setLoadingStatus('Loading Google Maps script...')
 
       const script = document.createElement('script')
@@ -83,7 +78,6 @@ export const Map = ({ center, places, apiKey }: PlacesMapProps) => {
       script.async = true
 
       script.onload = () => {
-        console.log('Google Maps script loaded successfully')
         setTimeout(() => {
           if ((window as any).google?.maps) {
             setIsScriptLoaded(true)
@@ -108,14 +102,12 @@ export const Map = ({ center, places, apiKey }: PlacesMapProps) => {
   // Second useEffect: Initialize map when both script is loaded AND component is mounted
   useEffect(() => {
     if (isScriptLoaded && mapRef.current && !isMapReady) {
-      console.log('Both script loaded and container ready, initializing map...')
       setLoadingStatus('Initializing map...')
       initializeMap()
     }
   }, [isScriptLoaded, isMapReady])
 
   const initializeMap = () => {
-    console.log('initializeMap called')
 
     if (!mapRef.current || !(window as any).google?.maps) {
       console.error('Requirements not met for map initialization')
@@ -125,7 +117,6 @@ export const Map = ({ center, places, apiKey }: PlacesMapProps) => {
 
     try {
       const google = (window as any).google
-      console.log('Creating map with center:', center)
 
       const map = new google.maps.Map(mapRef.current, {
         center: center,
@@ -142,7 +133,6 @@ export const Map = ({ center, places, apiKey }: PlacesMapProps) => {
 
       mapInstanceRef.current = map
       setIsMapReady(true)
-      console.log('Map created successfully!')
 
       // Add center marker (searched address) - special red marker
       new google.maps.Marker({
@@ -172,7 +162,6 @@ export const Map = ({ center, places, apiKey }: PlacesMapProps) => {
     if (!mapInstanceRef.current) return
 
     const google = (window as any).google
-    console.log('Adding markers for places:', Object.keys(places))
 
     Object.entries(places).forEach(([placeType, placeList]) => {
       const config = placeConfig[placeType] || { color: '#666666', icon: '📍', label: 'Other' }

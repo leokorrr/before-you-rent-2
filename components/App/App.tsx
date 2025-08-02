@@ -86,7 +86,7 @@ export const App = () => {
             onClick={handleAddressSend}
             disabled={isPending}
             aria-busy={isPending}
-            className={`transition mt-[20px] md:mt-0 h-[54px] w-full md:w-[100px] rounded-[6px] font-semibold ml-[8px]
+            className={`transition hidden md:block mt-[20px] md:mt-0 h-[54px] w-full md:w-[100px] rounded-[6px] font-semibold md:ml-[8px]
     bg-[#ededed] text-[#0A0A0A] hover:bg-[#cccccc] hover:cursor-pointer
     flex items-center justify-center gap-2
     ${isPending ? 'opacity-60 cursor-not-allowed hover:bg-[#ededed]' : ''}`}
@@ -134,6 +134,40 @@ export const App = () => {
           onChange={setRadiusKm}
           className='mt-1'
         />
+
+        <button
+          onClick={handleAddressSend}
+          disabled={isPending}
+          aria-busy={isPending}
+          className={`transition  md:hidden mt-[20px] md:mt-0 h-[54px] w-full md:w-[100px] rounded-[6px] font-semibold md:ml-[8px]
+    bg-[#ededed] text-[#0A0A0A] hover:bg-[#cccccc] hover:cursor-pointer
+    flex items-center justify-center gap-2
+    ${isPending ? 'opacity-60 cursor-not-allowed hover:bg-[#ededed]' : ''}`}
+        >
+          {isPending && (
+            <svg
+              className='animate-spin h-5 w-5'
+              viewBox='0 0 24 24'
+              aria-hidden='true'
+            >
+              <circle
+                className='opacity-25'
+                cx='12'
+                cy='12'
+                r='10'
+                stroke='currentColor'
+                strokeWidth='4'
+                fill='none'
+              />
+              <path
+                className='opacity-75'
+                fill='currentColor'
+                d='M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z'
+              />
+            </svg>
+          )}
+          {!isPending && <span>Send</span>}
+        </button>
 
         {!isPending && places && coordinates && (
           <div className='my-[32px]'>
