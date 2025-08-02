@@ -86,7 +86,7 @@ export const App = () => {
             onClick={handleAddressSend}
             disabled={isPending}
             aria-busy={isPending}
-            className={`transition hidden md:block mt-[20px] md:mt-0 h-[54px] w-full md:w-[100px] rounded-[6px] font-semibold md:ml-[8px]
+            className={`transition hidden md:flex mt-[20px] md:mt-0 h-[54px] w-full md:w-[100px] rounded-[6px] font-semibold md:ml-[8px]
     bg-[#ededed] text-[#0A0A0A] hover:bg-[#cccccc] hover:cursor-pointer
     flex items-center justify-center gap-2
     ${isPending ? 'opacity-60 cursor-not-allowed hover:bg-[#ededed]' : ''}`}
