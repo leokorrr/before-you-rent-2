@@ -10,8 +10,8 @@ let quotaTracker = {
 }
 
 const QUOTA_LIMITS = {
-  geocoding: 40000, // Geocoding API
-  places: 40000 // Places API
+  geocoding: 10000, // Geocoding API
+  places: 10000 // Places API
 }
 
 function resetQuotaIfNewMonth() {
